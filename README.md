@@ -45,5 +45,5 @@ Sorularınız veya geri bildirimleriniz için lütfen bir GitHub konusu açın.
 
 ## English Version
 
-Click [here](README_EN.txt) for the English README file.
+Click [here](README_EN.md) for the English README file.
 

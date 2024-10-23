@@ -30,6 +30,8 @@ class loginLib:
 			response = client.send(request)
 			login_url = parserLib.get_login_url(response)
 
+            # If the response contains "Firewall Authentication Logout", it means the user is already logged in
+			# Fortinet Firewall Authentication Logout
 			if "Firewall Authentication Logout" in response.content.decode('utf-8'):
 				login_url = None
 			else:

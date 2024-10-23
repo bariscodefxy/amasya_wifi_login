@@ -7,11 +7,10 @@
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 
-def get_ip_list():
-	return [
-		"8.8.8.8",
-		"1.1.1.1",
-		"9.9.9.9",
-		"1.0.0.1",
-		"8.8.4.4"
-	]
+IP_LIST = [
+	"8.8.8.8",
+	"1.1.1.1",
+	"9.9.9.9",
+	"1.0.0.1",
+	"8.8.4.4"
+]

@@ -16,8 +16,10 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import time
-
+import random
 from const._version import VERSION, DEBUG
+from const.ipList import IP_LIST
+
 from lib.pingLib import pingLib
 from lib.credentialLib import credentialLib
 from lib.loginLib import loginLib
@@ -34,7 +36,9 @@ loggerLib.info(f"Hata ayıklama: {DEBUG}")
 is_first_connection = False
 
 while True:
-	if not pingLib.ping('8.8.8.8') and pingLib.ping('kimlikdogrulama.amasya.edu.tr'):
+	random_ip = random.choice(IP_LIST)
+
+	if not pingLib.ping(random_ip) and pingLib.ping('kimlikdogrulama.amasya.edu.tr'):
 		loginLib.perform_login()
 	else:
 		loggerLib.debug("Ping testi yapıldı. Giriş işlemi yapılmıyor.")

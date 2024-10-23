@@ -21,7 +21,7 @@ This tool allows you to automatically log in to Amasya University's WiFi network
 
 ## Usage
 
-1. Create a `settings.txt` file and write your username and password in it:
+1. Create a `ayarlar.txt` file and write your username and password in it:
    ```
    username
    password

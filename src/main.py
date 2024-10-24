@@ -41,7 +41,7 @@ while True:
 	loggerLib.info(f"Ping testi yapılıyor: {random_ip}")
 
 	if not pingLib.ping(random_ip) and pingLib.ping('kimlikdogrulama.amasya.edu.tr'):
-		loginLib.perform_login()
+		loginLib.perform_login(g_username, g_password)
 	else:
 		loggerLib.debug("Ping testi yapıldı. Giriş işlemi yapılmıyor.")
 

@@ -1,2 +1,2 @@
 httpx==0.27.2
-pywin32==308
+pywin32==308; sys_platform == 'win32'

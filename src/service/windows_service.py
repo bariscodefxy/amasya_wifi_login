@@ -3,7 +3,7 @@ import win32serviceutil
 import win32event
 import servicemanager
 
-class MyService(win32serviceutil.ServiceFramework):
+class WindowsService(win32serviceutil.ServiceFramework):
     _svc_name_ = "Amasya Wifi Login"
     _svc_display_name_ = "Amasya Wifi Login's Windows Service"
     
@@ -16,12 +16,12 @@ class MyService(win32serviceutil.ServiceFramework):
         win32event.SetEvent(self.stop_event)
 
     def SvcDoRun(self):
-        servicemanager.LogInfoMsg("My Python Service is starting...")
+        servicemanager.LogInfoMsg(self._svc_name_ + " is starting...")
         while True:
             # Your service logic here
             if win32event.WaitForSingleObject(self.stop_event, 5000) == win32event.WAIT_OBJECT_0:
                 break
-        servicemanager.LogInfoMsg("My Python Service is stopping...")
+        servicemanager.LogInfoMsg(self._svc_name_ + " is stopping...")
 
 if __name__ == "__main__":
     win32serviceutil.HandleCommandLine(MyService)

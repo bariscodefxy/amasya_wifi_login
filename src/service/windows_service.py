@@ -24,4 +24,4 @@ class WindowsService(win32serviceutil.ServiceFramework):
         servicemanager.LogInfoMsg(self._svc_name_ + " is stopping...")
 
 if __name__ == "__main__":
-    win32serviceutil.HandleCommandLine(MyService)
+    win32serviceutil.HandleCommandLine(WindowsService)

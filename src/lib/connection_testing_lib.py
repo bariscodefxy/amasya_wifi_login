@@ -15,13 +15,16 @@ class connection_testing_lib:
 
     @staticmethod
     def test_connection(url, check_captive = True):
+        status_codes = [ 200, 301, 302 ]
+
         try:
             response = httpx.get(url, timeout=3)
+
             if not check_captive:
-                return response.status_code == 200
+                return response.status_code in status_codes
 
             if not b"Captive Portal" in response.content:
-                return response.status_code == 200
+                return response.status_code in status_codes
             
             return False
         except httpx.RequestError:

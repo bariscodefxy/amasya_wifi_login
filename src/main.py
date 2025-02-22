@@ -34,7 +34,7 @@ logger_lib.info(f"Hata ayıklama: {DEBUG}")
 
 is_first_connection = False
 
-test_url = "https://one.one.one.one"
+test_url = "https://bariscodefx.com.tr"
 
 while True:
 	logger_lib.info(f"Request testi yapılıyor: {test_url}")
@@ -48,5 +48,5 @@ while True:
 
 	time.sleep(10)
 
-	if connection_testing_lib.test_connection('https://internet.amasya.edu.tr'):
+	if connection_testing_lib.test_connection('https://internet.amasya.edu.tr', check_captive=False):
 		is_first_connection = False

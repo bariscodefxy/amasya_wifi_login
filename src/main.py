@@ -18,38 +18,35 @@
 import time
 import random
 from const._version import VERSION, DEBUG
-from const.ipList import IP_LIST
 
-from lib.pingLib import pingLib
-from lib.credentialLib import credentialLib
-from lib.loginLib import loginLib
-from lib.loggerLib import loggerLib
+from lib.connection_testing_lib import connection_testing_lib
+from lib.credential_lib import credential_lib
+from lib.login_lib import login_lib
+from lib.logger_lib import logger_lib
 
-g_username, g_password = credentialLib.read_credentials()
+g_username, g_password = credential_lib.read_credentials()
 if g_username is None or g_password is None:
-    loggerLib.info("Kimlik bilgileri okunamadı. Çıkılıyor.")
+    logger_lib.info("Kimlik bilgileri okunamadı. Çıkılıyor.")
     exit(1)
 
-loggerLib.info(f"Versiyon: {VERSION}")
-loggerLib.info(f"Hata ayıklama: {DEBUG}")
+logger_lib.info(f"Versiyon: {VERSION}")
+logger_lib.info(f"Hata ayıklama: {DEBUG}")
 
 is_first_connection = False
 
+test_url = "https://one.one.one.one"
+
 while True:
-	random_ip = random.choice(IP_LIST)
+	logger_lib.info(f"Request testi yapılıyor: {test_url}")
 
-	loggerLib.info(f"Ping testi yapılıyor: {random_ip}")
-
-	if not pingLib.ping(random_ip) and pingLib.ping('kimlikdogrulama.amasya.edu.tr'):
-		loginLib.perform_login(g_username, g_password)
-	else:
-		loggerLib.debug("Ping testi yapıldı. Giriş işlemi yapılmıyor.")
-
-	if not is_first_connection:
-		time.sleep(1)
+	if not connection_testing_lib.test_connection(test_url):
+		login_lib.perform_login(g_username, g_password)
+		logger_lib.info("Giriş yapılmamış. Giriş işlemi yapılıyor.")
 		is_first_connection = True
 	else:
-		time.sleep(30)
+		logger_lib.debug("Request testi yapıldı. Giriş işlemi yapılmıyor.")
 
-	if not pingLib.ping('kimlikdogrulama.amasya.edu.tr'):
+	time.sleep(10)
+
+	if connection_testing_lib.test_connection('https://internet.amasya.edu.tr'):
 		is_first_connection = False

@@ -7,10 +7,17 @@
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 
-IP_LIST = [
-	"8.8.8.8",
-	"1.1.1.1",
-	"9.9.9.9",
-	"1.0.0.1",
-	"8.8.4.4"
-]
+from const._version import DEBUG
+
+class logger_lib:
+	def __init__(self):
+		pass
+	
+	@staticmethod
+	def debug(message):
+		if DEBUG:
+			print(f"[DEBUG] {message}")
+	
+	@staticmethod
+	def info(message):
+		print(f"[INFO] {message}")

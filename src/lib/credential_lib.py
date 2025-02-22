@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 
-class credentialLib:
+class credential_lib:
     def __init__(self):
         pass
     
